@@ -16,6 +16,7 @@ let package = Package(
     ],
     targets: [
         .target(name: "Flatten", dependencies: []),
+        .testTarget(name: "FlattenTests", dependencies: ["Flatten"]),
         .target(name: "FlattenGen", dependencies: ["FlattenGenLib"]),
         .target(name: "FlattenGenLib", dependencies: []),
         .testTarget(name: "FlattenGenTests", dependencies: ["FlattenGenLib"]),

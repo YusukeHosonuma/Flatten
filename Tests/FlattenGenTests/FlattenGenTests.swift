@@ -8,7 +8,7 @@
 import XCTest
 import FlattenGenLib
 
-final class FlattenTests: XCTestCase {
+final class FlattenGenTests: XCTestCase {
     func testExample() {
 
         assertEqualLines(generate(argunmentCount: 0), """
