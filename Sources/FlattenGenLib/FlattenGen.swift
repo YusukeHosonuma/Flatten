@@ -7,7 +7,7 @@
 
 public func generate(argunmentCount: Int) -> String {
     let flatten0 = """
-    func flatten<V, R>(_ f: @escaping (V) -> () -> R) -> (V) -> R {
+    public func flatten<V, R>(_ f: @escaping (V) -> () -> R) -> (V) -> R {
         { (v: V) -> R in f(v)() }
     }
     """
@@ -27,7 +27,7 @@ public func generate(argunmentCount: Int) -> String {
             let args = list { "t\($0)" }
 
             return """
-            func flatten<V, \(types), R>(_ f: @escaping (V) -> (\(types)) -> R) -> (V, \(types)) -> R {
+            public func flatten<V, \(types), R>(_ f: @escaping (V) -> (\(types)) -> R) -> (V, \(types)) -> R {
                 { (v: V, \(params)) -> R in f(v)(\(args)) }
             }
             """
