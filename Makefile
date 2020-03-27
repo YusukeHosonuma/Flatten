@@ -17,7 +17,12 @@ open: ## Open Xcode 11.3
 
 .PHONY: build
 build: ## Run build
+	echo "" > Sources/Flatten/Flatten.swift
 	swift build
+
+.PHONY: generate
+generate: build ## Generate source
+	.build/debug/FlattenGen
 
 .PHONY: test
 test: ## Run tests
