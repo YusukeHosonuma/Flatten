@@ -10,6 +10,10 @@ public func generate(argunmentCount: Int) -> String {
     public func flatten<V, R>(_ f: @escaping (V) -> () -> R) -> (V) -> R {
         { (v: V) -> R in f(v)() }
     }
+
+    public func flatten<V, R>(_ f: @escaping (V) -> () throws -> R) -> (V) throws -> R {
+        { (v: V) -> R in try f(v)() }
+    }
     """
 
     if argunmentCount == 0 {
@@ -29,6 +33,10 @@ public func generate(argunmentCount: Int) -> String {
             return """
             public func flatten<V, \(types), R>(_ f: @escaping (V) -> (\(types)) -> R) -> (V, \(types)) -> R {
                 { (v: V, \(params)) -> R in f(v)(\(args)) }
+            }
+            
+            public func flatten<V, \(types), R>(_ f: @escaping (V) -> (\(types)) throws -> R) -> (V, \(types)) throws -> R {
+                { (v: V, \(params)) throws -> R in try f(v)(\(args)) }
             }
             """
         }

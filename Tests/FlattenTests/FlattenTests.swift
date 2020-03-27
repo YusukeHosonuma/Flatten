@@ -38,4 +38,34 @@ final class FlattenGenTests: XCTestCase {
         XCTAssertEqual(flatten_f1(object, 1),    [1])
         XCTAssertEqual(flatten_f2(object, 1, 2), [1, 2])
     }
+    
+    func testThrows() {
+        class Object {
+            func args0() throws -> [Int] {
+                [0]
+            }
+
+            func args1(_ a: Int) throws -> [Int] {
+                [a]
+            }
+
+            func args2(_ a: Int, _ b: Int) throws -> [Int] {
+                [a, b]
+            }
+        }
+        
+        let object = Object()
+        
+        let f0: (Object) -> () throws         -> [Int] = Object.args0
+        let f1: (Object) -> (Int) throws      -> [Int] = Object.args1
+        let f2: (Object) -> (Int, Int) throws -> [Int] = Object.args2
+
+        let flatten_f0: (Object) throws           -> [Int] = flatten(f0)
+        let flatten_f1: (Object, Int) throws      -> [Int] = flatten(f1)
+        let flatten_f2: (Object, Int, Int) throws -> [Int] = flatten(f2)
+
+        XCTAssertEqual(try flatten_f0(object),       [0])
+        XCTAssertEqual(try flatten_f1(object, 1),    [1])
+        XCTAssertEqual(try flatten_f2(object, 1, 2), [1, 2])
+    }
 }
