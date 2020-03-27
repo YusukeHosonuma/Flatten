@@ -8,12 +8,12 @@
 Flatten instance method reference that resolved to [SE-0042](https://github.com/apple/swift-evolution/blob/master/proposals/0042-flatten-method-types.md).
 
 ```swift
-let f = String.hasPrefix
+let f: (String) -> (String) -> Bool = String.hasPrefix
 
 // function is curried
 f("Hello")("He") // => true
 
-let __f = flatten(f)
+let __f: (String, String) -> Bool = flatten(f)
 
 // function is flattend
 __f("Hello", "He") // => true
