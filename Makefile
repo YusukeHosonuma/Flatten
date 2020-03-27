@@ -32,21 +32,17 @@ test: ## Run tests
 xcode: ## swift - generate xcode project
 	swift package generate-xcodeproj
 
-.PHONY: format
-format: ## format sources by SwiftFormat
-	swiftformat --config .swiftformat --header "\n{file}\nSwiftParamTest\n\nCreated by Yusuke Hosonuma on {created}.\nCopyright (c) {year} Yusuke Hosonuma.\n" .
-
 .PHONY: lint
 lint: ## cocoapods - lint podspec
 	bundle exec pod lib lint
 
 .PHONY: release
 release: ## cocoapods - release
-	bundle exec pod trunk push SwiftParamTest.podspec
+	bundle exec pod trunk push Flatten.podspec
 
 .PHONY: info
 info: ## cocoapods - show trunk information
-	bundle exec pod trunk info SwiftParamTest
+	bundle exec pod trunk info Flatten
 
 .PHONY: integration-test
 integration-test: ## Integration test by Example app
