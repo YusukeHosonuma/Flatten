@@ -13,7 +13,7 @@ let output = """
 // This source is automatically generated.
 //
 
-\(generate(argunmentCount: 12))
+\(generate(argunmentCount: 20))
 
 """
 
