@@ -1,6 +1,6 @@
 //
 //  Assertion.swift
-//  FlattenTests
+//  FlattenGenTests
 //
 //  Created by Yusuke Hosonuma on 2020/03/27.
 //
